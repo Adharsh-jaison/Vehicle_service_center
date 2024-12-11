@@ -1,0 +1,63 @@
+{% extends 'owner\base.html' %}
+
+{% block content %}
+  <!-- Content for the table -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mb-0">Tutor Table</h1>
+        <table class="table">
+       
+          <thead>
+            <tr>
+              <th>UserName</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>UserType</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in tutor  %}
+            {% for j in accepted %}
+            {% if i.username == j.user.username %}
+            <tr>
+              <td>{{i.username}}</td>
+              <td>{{i.first_name}}</td>
+              <td>{{i.last_name}}</td>
+              <td>{{i.email}}</td>
+              <td>{{j.Subject}}</td>
+              {% if i.is_active %}
+              <td>Active</td>
+              {% else %}
+              <td>InActive</td>
+              {% endif %}
+              {% if i.is_staff %}
+              <td>Tutor</td>
+              {% else %}
+              <td>Learner</td>
+              {% endif %}
+              <td>
+              {% if i.is_active %}
+              <button onclick="alert('Are you sure?')" type="submit" style="background-color: blue; padding: 5px; border-radius: 10px; border: none;"><a href="{% url 'statuschange' id=i.id %}" style="text-decoration: none;color: black;">InActive</a></button>
+              {% else %}
+              <button onclick="alert('Are you sure?')" type="submit" style="background-color: blue; padding: 5px; border-radius: 10px; border: none;"><a href="{% url 'statuschange' id=i.id %}" style="text-decoration: none;color: black;">Active</a></button>
+              {% endif %}
+              {% endif %}
+               <br><br>
+              <!-- <button onclick="alert('Are you sure?')" type="submit" style="background-color: blue; padding: 5px; border-radius: 10px; border: none;"><a href="{% url 'userdelete' id=i.id %}" style="text-decoration: none;color: black;">Delete</a></button></td> -->
+              
+              
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

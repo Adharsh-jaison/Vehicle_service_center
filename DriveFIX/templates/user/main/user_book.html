@@ -1,0 +1,190 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+
+    <title>profile edit data and skills - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="edit.css">
+</head>
+
+<body> -->
+    {% extends 'user/base.html' %}
+
+    {% load static %}
+    
+    {% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book Service</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .container {
+                width: 100%;
+                max-width: 900px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+    
+            h1 {
+                text-align: center;
+                font-size: 2em;
+                margin-bottom: 10px;
+                color: #333;
+            }
+    
+            .service-header {
+                text-align: center;
+                font-size: 1.2em;
+                margin-bottom: 20px;
+                color: #777;
+            }
+    
+            .service-details {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+    
+            .service-details p {
+                font-size: 1em;
+                color: #555;
+            }
+    
+            label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                font-size: 1em;
+            }
+    
+            input, select {
+                width: 100%;
+                padding: 10px;
+                font-size: 1em;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+    
+            button {
+                width: 100%;
+                padding: 10px;
+                font-size: 1.2em;
+                background-color: #5cb85c;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+    
+            button:hover {
+                background-color: #4cae4c;
+            }
+    
+            .booking-form {
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <!-- Service provider details -->
+            <h1>Book Service with {{ service_provider.service_center_name }}</h1>
+            <div class="service-header">
+                <p>Location: {{ service_provider.location }}</p>
+            </div>
+    
+            <div class="service-details">
+                <p><strong>Service Center Name:</strong> {{ service_provider.service_center_name }}</p>
+                <p><strong>Address:</strong> {{ service_provider.address }}</p>
+                <p><strong>Vehicle Make:</strong> {{ service_provider.vehicle_make }}</p>
+                <p><strong>Phone:</strong> {{ service_provider.phone }}</p>
+                <p><strong>Email:</strong> {{ service_provider.email }}</p>
+                <p><strong>Operating Hours:</strong> {{ service_provider.operating_hours }}</p>
+                <p><strong>Available Services:</strong> {{ service_provider.available_services }}</p>
+                <p><strong>Pricing:</strong> {{ service_provider.pricing }}</p>
+                <p><strong>Ratings & Reviews:</strong> {{ service_provider.ratings_reviews }}</p>
+                <p><strong>Service Center Type:</strong> {{ service_provider.service_center_type }}</p>
+                <p><strong>Facilities:</strong> {{ service_provider.facilities }}</p>
+                <p><strong>Manager Name:</strong> {{ service_provider.manager_name }}</p>
+                <p><strong>Booking Availability:</strong> {{ service_provider.booking_availability }}</p>
+                <p><strong>Payment Methods:</strong> {{ service_provider.payment_methods }}</p>
+            </div>
+    
+            <!-- Booking Form -->
+            <div class="booking-form">
+                <h2>Book Your Service</h2>
+                <form id="bookingForm" method="POST" action="{% url 'user_book' service_provider.id %}">
+                    {% csrf_token %}
+                    
+                    <!-- Service Date -->
+                    <label for="service_date">Choose a Service Date:</label>
+                    <input type="date" id="service_date" name="service_date" required>
+                
+                    <!-- Vehicle Type -->
+                    <label for="vehicle_type">Vehicle Type:</label>
+                    <select id="vehicle_type" name="vehicle_type" required>
+                        <option value="" disabled selected>Select your vehicle type</option>
+                        <option value="Two Wheeler">Two Wheeler</option>
+                        <option value="Four Wheeler">Four Wheeler</option>
+                        <option value="Commercial Vehicle">Commercial Vehicle</option>
+                    </select>
+                
+                    <!-- Need Mechanic On-site -->
+                    <label for="mechanic_on_site">Need Mechanic On-site?</label>
+                    <select id="mechanic_on_site" name="mechanic_on_site" required>
+                        <option value="" disabled selected>Select Yes or No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                
+                    <!-- Vehicle Model Year -->
+                    <label for="model_year">Vehicle Model Year:</label>
+                    <input type="number" id="model_year" name="model_year" placeholder="Enter model year (e.g., 2020)" min="1900" max="{{ current_year }}" required>
+                
+                    <!-- Vehicle Model -->
+                    <label for="vehicle_model">Vehicle Model:</label>
+                    <input type="text" id="vehicle_model" name="vehicle_model" placeholder="Enter your vehicle model" required>
+                
+                    <!-- Vehicle Number -->
+                    <label for="vehicle_number">Vehicle Number:</label>
+                    <input type="text" id="vehicle_number" name="vehicle_number" placeholder="Enter vehicle number" required>
+                
+                    <!-- Location of Vehicle -->
+                    <label for="vehicle_location">Location of Vehicle:</label>
+                    <input type="text" id="vehicle_location" name="vehicle_location" placeholder="Enter location where vehicle is" required>
+                
+                    <!-- Complaints (optional) -->
+                    <label for="additional_info">Complaints/Service :</label>
+                    <textarea id="additional_info" name="additional_info" rows="4" style="width:100%; padding:10px; border-radius:5px;"></textarea>
+                
+                    <!-- Submit Button -->
+                    <button type="submit">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </body>
+    
+    {% endblock content %}
+    

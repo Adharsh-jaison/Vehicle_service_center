@@ -1,0 +1,156 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Service Center Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .dashboard-container {
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .status-label {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background-color: #ffc107;
+        }
+
+        .status-accepted {
+            background-color: #28a745;
+        }
+
+        .status-completed {
+            background-color: #007bff;
+        }
+
+        .action-btn {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>{{ service_center.service_center_name }} Dashboard</h1>
+
+        <h2>Bookings:</h2>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Service Date</th>
+                    <th>Vehicle Type</th>
+                    <th>Vehicle Model</th>
+                    <th>Vehicle Number</th>
+                    <th>Mechanic On-Site</th>
+                    <th>Vehicle Location</th>
+                    <th>Additional Info</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    <th>Chat Box</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bookings in booking %}
+                <tr>
+                    <td>{{ bookings.customer }}</td>
+                    <td>{{ bookings.service_date }}</td>
+                    <td>{{ bookings.vehicle_type }}</td>
+                    <td>{{ bookings.vehicle_model }}</td>
+                    <td>{{ bookings.vehicle_number }}</td>
+                    <td>{{ bookings.mechanic_on_site }}</td>
+                    <td>{{ bookings.vehicle_location }}</td>
+                    <td>{{ bookings.additional_info }}</td>
+                  
+                    <td>
+                        <span class="status-label 
+                            {% if bookings.status == 'Pending' %}
+                                status-pending
+                            {% elif bookings.status == 'Accepted' %}
+                                status-accepted
+                            {% elif bookings.status == 'Completed' %}
+                                status-completed
+                            {% endif %}">
+                            {{ bookings.status }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if bookings.status == 'Pending' %}
+                        <form method="POST" action="{% url 'accept_booking' bookings.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success action-btn">Accept</button>
+                        </form>
+                        {% endif %}
+
+                        {% if bookings.status == 'Accepted' %}
+                        <form method="POST" action="{% url 'complete_booking' bookings.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary action-btn">Mark as Completed</button>
+                        </form>
+                        {% endif %}
+                        {% if bookings.status == 'Billing..' %}
+                        <form method="POST" action="{% url 'add_invoice' bookings.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary action-btn">Add Invoice</button>
+                          
+                        </form>
+                        {% endif %}
+                    </td>
+                    {% if bookings.status == 'Pending' %}
+                    <td>
+                        <a href="{% url 'chat' bookings.id %}" class="btn btn-success action-btn">CHAT</a>
+                    </td>
+                    {% endif %}
+
+                    {% if bookings.status == 'Accepted' %}
+                    <td>
+                        <a href="{% url 'chat' bookings.id %}" class="btn btn-success action-btn">CHAT</a>
+                    </td>
+                    {% endif %}
+                    {% if bookings.status == 'Billing..' %}
+                    <td>
+                        <a href="{% url 'chat' bookings.id %}" class="btn btn-success action-btn">CHAT</a>
+                    </td>
+                      
+                  
+                    {% endif %}
+                    {% if bookings.status == 'Completed' %}
+                    <td>
+                        <p>BOOKING COMPLETED</P>
+                    </td>
+                      
+                  
+                    {% endif %}
+                 
+                    
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">No bookings found.</td>
+                </tr>
+                {% endfor %}
+             
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+{% endblock content %}

@@ -1,0 +1,155 @@
+{% extends 'owner/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div>
+    "          
+       ""
+</div>
+<div>"         
+    "
+    "
+    "
+    "
+</div>
+<div>"
+    "
+    "
+    "</div>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <h1 style="text-align: center;">COMPLETE PROFILE</h1>
+
+    <div class="form-group row">
+        <label for="service_center_name" class="col-sm-2 col-form-label">Service Center Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="service_center_name" name="service_center_name" value="{{ user.serviceprofile.service_center_name }}" placeholder="Enter your Service Center Name">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="address" name="address" value="{{ user.serviceprofile.address }}" placeholder="Enter your Address">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+            <input type="tel" class="form-control" id="phone" name="phone" value="{{ user.serviceprofile.phone }}" placeholder="Enter your Phone Number" pattern="[0-9]{10}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email Address</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" value="{{ user.serviceprofile.email }}" name="email" placeholder="Enter Email Address">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="vehicle_make" class="col-sm-2 col-form-label">vehicle_make</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="vehicle_make" value="{{ user.serviceprofile.vehicle_make }}" name="vehicle_make" placeholder="vehicle_make">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="location" class="col-sm-2 col-form-label">location</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" value="{{ user.serviceprofile.location }}" name="location" placeholder="Enter location">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="operating_hours" class="col-sm-2 col-form-label">Operating Hours</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="operating_hours" value="{{ user.serviceprofile.operating_hours }}" name="operating_hours" placeholder="e.g., Mon-Fri 9am-5pm">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="available_services" class="col-sm-2 col-form-label">Available Services</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="available_services" name="available_services" rows="3" placeholder="List of Services (e.g., Oil Change, Tire Replacement)">{{ user.serviceprofile.available_services }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="pricing" class="col-sm-2 col-form-label">Pricing</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="pricing" name="pricing" rows="2" placeholder="Basic price ranges for key services">{{ user.serviceprofile.pricing }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="ratings_reviews" class="col-sm-2 col-form-label">Ratings & Reviews</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="ratings_reviews" name="ratings_reviews" rows="2" placeholder="Customer reviews or average rating">{{ user.serviceprofile.ratings_reviews }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="service_center_type" class="col-sm-2 col-form-label">Service Center Type</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="service_center_type" name="service_center_type">
+                <option value="authorizedDealer" {% if user.serviceprofile.service_center_type == "authorizedDealer" %}selected{% endif %}>Authorized Dealer</option>
+                <option value="independent" {% if user.serviceprofile.service_center_type == "independent" %}selected{% endif %}>Independent Service Center</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="facilities" class="col-sm-2 col-form-label">Facilities</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="facilities" name="facilities" rows="2" placeholder="Special features like free Wi-Fi, waiting room, etc.">{{ user.serviceprofile.facilities }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="manager_name" class="col-sm-2 col-form-label">Manager Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="manager_name" value="{{ user.serviceprofile.manager_name }}" name="manager_name" placeholder="Enter Manager Name">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="booking_availability" class="col-sm-2 col-form-label">Booking Availability</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="booking_availability" value="{{ user.serviceprofile.booking_availability }}" name="booking_availability" placeholder="Number of slots available per day">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="payment_methods" class="col-sm-2 col-form-label">Payment Methods</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="payment_methods" value="{{ user.serviceprofile.payment_methods }}" name="payment_methods" placeholder="Cash, Card, Online Payment">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="serviceCenterImage">Service Center Image</label>
+        {% if serviceprofile.service_center_image %}
+            <img src="{{serviceprofile.service_center_image.url}}" height="200px">
+       {% endif %}
+        <input type="file" class="form-control" id="service_center_image" name="service_center_image">
+
+    </div>
+
+    {% comment %} <div class="form-group row">
+        <label for="service_center_image" class="col-sm-2 col-form-label">Service Center Image</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" id="service_center_image" name="service_center_image">
+        </div>
+    </div> {% endcomment %}
+
+    <div class="form-group row justify-content-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+{% endblock content %}

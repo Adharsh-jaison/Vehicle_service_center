@@ -1,0 +1,400 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+<div>
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+  "
+</div>
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+</div>
+
+
+
+<!--  chart figure -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+ 
+</figure>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container1"></div>
+ 
+</figure>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container2"></div>
+  
+</figure>
+
+
+
+
+<style>
+    .highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+    
+    
+    .highcharts-figure,
+  .highcharts-data-table table {
+      min-width: 320px;
+      max-width: 800px;
+      margin: 1em auto;
+  }
+  
+  .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #ebebeb;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+  }
+  
+  .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+  }
+  
+  .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+  }
+  
+  .highcharts-data-table td,
+  .highcharts-data-table th,
+  .highcharts-data-table caption {
+      padding: 0.5em;
+  }
+  
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+  }
+  
+  .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+  }
+  
+  input[type="number"] {
+      min-width: 50px;
+  }
+
+
+
+
+
+{% comment %} 
+  next graph style {% endcomment %}
+  .highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+#container {
+    height: 400px;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+
+#container {
+  height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+  </style>
+
+      <script>
+        Highcharts.chart('container', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: 'Booking Status Breakdown'
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        subtitle: {
+            text:
+            'Source:<a href="https://www.mdpi.com/2072-6643/11/3/684/htm" target="_default">MDPI</a>'
+        },
+        plotOptions: {
+            series: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: [{
+                    enabled: true,
+                    distance: 20
+                }, {
+                    enabled: true,
+                    distance: -40,
+                    format: '{point.percentage:.1f}%',
+                    style: {
+                        fontSize: '1.2em',
+                        textOutline: 'none',
+                        opacity: 0.7
+                    },
+                    filter: {
+                        operator: '>',
+                        property: 'percentage',
+                        value: 10
+                    }
+                }]
+            }
+        },
+        series: [
+            {
+                name: 'Percentage',
+                colorByPoint: true,
+                data: [
+                    {
+                        name: 'Pending',
+                        y:{{ pending_count }}
+                    },
+                    {
+                        name: 'Accepted',
+                        sliced: true,
+                        selected: true,
+                        y: {{ accepted_count }}
+                    },
+                    {
+                        name: 'Billing..',
+                        y: {{  billing_count }}
+                    },
+                    {
+                        name:  'Completed',
+                        y: {{ completed_count }}
+                    },
+                 
+                ]
+            }
+        ]
+    });
+
+
+
+    // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
+
+
+
+// Data retrieved from https://olympics.com/en/olympic-games/beijing-2022/medals
+Highcharts.chart('container2', {
+  chart: {
+      type: 'pie',
+      options3d: {
+          enabled: true,
+          alpha: 45
+      }
+  },
+  title: {
+      text: 'Unpaid vs Paid Bookings',
+      align: 'left'
+  },
+  subtitle: {
+      text: '3D donut in Highcharts',
+      align: 'left'
+  },
+  plotOptions: {
+      pie: {
+          innerSize: 100,
+          depth: 45
+      }
+  },
+  series: [{
+      name: 'BILLING',
+      data: [
+          ['Paid', {{ paid_count}}],
+          ['Unpaid', {{ unpaid_count }}],
+        
+
+      ]
+  }]
+});
+
+    </script>
+
+   
+    
+
+        {% endblock content %}

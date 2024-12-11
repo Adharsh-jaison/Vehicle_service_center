@@ -1,0 +1,65 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div>
+    "          
+       ""
+</div>
+<div>"         
+    "
+    "
+    "
+    "
+</div>
+<div></div>
+<head>
+
+    {% comment %} <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+    <title>Service Center Invoice</title>
+{% comment %} </head> {% endcomment %}
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+
+    <div style="max-width: 800px; margin: 0 auto; background-color: #fff; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Service Center Invoice</h2>
+
+        <!-- Booking Information fetched dynamically -->
+        <section style="margin-bottom: 30px;">
+            <h3 style="margin-bottom: 10px; font-size: 18px;">Booking Details</h3>
+            <p><strong>Full Name:</strong> {{ booking.customer }}</p>
+            <p><strong>Vehicle Modal:</strong> {{ booking.vehicle_model }}</p>
+            <p><strong>Service Number:</strong> {{ booking.vehicle_number }}</p>
+            <p><strong>Service Date:</strong> {{ booking.service_date }}</p>
+        </section>
+
+       <!-- Service Description -->
+    <!-- Bill Amount Section -->
+    <form method="post" action="{% url 'add_bill' booking.id %}">
+        {% csrf_token %}
+        <label for="bill-amount">Enter Bill Amount (₹):</label>
+        <input type="number" name="bill_amount" id="bill-amount" required>
+        <button type="submit">Submit</button>
+    </form>
+
+      
+          
+
+            <!-- Total Amount dynamically fetched from booking -->
+            {% comment %} <p><strong>Total Amount:</strong> ₹ {{ booking.total_amount }}</p>
+
+            <label for="payment-status" style="display: block; margin-bottom: 5px;">Payment Status:</label>
+            <select id="payment-status" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <option value="">Select Payment Status</option>
+                <option value="paid">Paid</option>
+                <option value="pending">Pending</option>
+                <option value="partially-paid">Partially Paid</option>
+            </select>
+        </section> {% endcomment %}
+
+        <!-- Submit Button -->
+     
+</body>
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+
+    <title>profile edit data and skills - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="edit.css">
+</head>
+<body> -->
+
+{%extends 'user/base.html'%}
+
+{% block content%}
+ <!-- Content for the table -->
+ <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mb-4">Tutor List</h1>
+        <!-- Your table goes here -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>TutorName</th>
+              <th>Subject</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in tlist  %}
+            <tr>
+              <td>{{i.user.username}}</td>
+              <td>{{i.Subject}}</td>
+              <td><button onclick="alert('Are you sure?')" type="submit" style="background-color: blue; padding: 5px; border-radius: 10px; border: none;"><a href="{% url 'change' id=i.user.id sub=i.Subject %}" style="text-decoration: none;color: black;">Request</a></button></td>
+              
+            </tr>
+            {% endfor %}
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock content%}

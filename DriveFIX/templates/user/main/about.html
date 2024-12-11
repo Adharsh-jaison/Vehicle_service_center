@@ -1,0 +1,129 @@
+{% extends 'user/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">About Us</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-wrench text-primary mb-4"></i> <!-- Wrench icon for vehicle repairs -->
+                        <h5 class="mb-3">Expert Technicians</h5>
+                        <p>Our skilled technicians provide top-notch service for your vehicle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-car text-primary mb-4"></i> <!-- Car icon -->
+                        <h5 class="mb-3">Convenient Online Booking</h5>
+                        <p>Book your vehicle service from the comfort of your home.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-tools text-primary mb-4"></i> <!-- Tools icon -->
+                        <h5 class="mb-3">Genuine Spare Parts</h5>
+                        <p>We use only genuine parts to ensure the longevity of your vehicle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-clock text-primary mb-4"></i> <!-- Clock icon -->
+                        <h5 class="mb-3">Timely Reminders</h5>
+                        <p>Receive reminders for your vehicle service appointments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{% static 'user/img/about.jpg'%}" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                    <h1 class="mb-4">Welcome to DriveFix</h1>
+                    <p class="mb-4">Your trusted partner in simplifying vehicle service management! At DriveFix, we understand the importance of keeping your vehicle in top condition, and we make it easier than ever to connect vehicle owners with reliable service centers. Our platform allows both service centers and vehicle owners to create personalized accounts, making service booking more efficient and hassle-free.
+
+                        With a user-friendly interface and location-based search, you can easily find and book services at the nearest service center, ensuring your vehicle gets the care it needs, right when you need it. Whether you're a service center looking to grow your business or a vehicle owner seeking reliable service, DriveFix is the one-stop solution for all your vehicle maintenance needs.
+                        
+                        Experience convenience, trust, and quality service with DriveFix—because your vehicle deserves the best!</p>
+                </div>
+                    <h5>Our Mission</h5>
+                    <h6  style="margin-top: 2px;">Seamless Booking, Vehicle Maintenance</h6>         
+                    <p style="margin-top: 5px;">Our mission is to simplify vehicle maintenance by connecting drivers with trusted service centers, offering seamless online booking, transparent service options, and efficient customer care. We aim to make vehicle servicing hassle-free, reliable, and accessible for everyone, ensuring road safety and customer satisfaction.</p>
+                    <h5 style="margin-top: 20px;">What Sets Us Apart?</h5>
+                    <h6 style="margin-top: 2px;">User-Friendly Experience</h6>
+                    <p style="margin-top: 5px;">Our platform is designed to make booking vehicle services quick and effortless, offering an intuitive interface and easy navigation.</p>
+                    <h5 style="margin-top: 20px;">Trusted Service Providers</h5>
+                    <p style="margin-top: 5px;">We partner only with certified and reliable service centers to ensure your vehicle gets the best care possible.</p>
+                    <h5 style="margin-top: 20px;">Real-Time Service Tracking</h5> 
+                    <p style="margin-top: 5px;">Stay informed with real-time updates on the status of your vehicle service, from booking to completion.</p>   
+                    <h5 style="margin-top: 20px;">Transparent Pricing</h5>
+                    <p style="margin-top: 5px;">We provide clear and upfront service costs, so you know exactly what you're paying for, with no hidden fees.</p>
+                    <h5 style="margin-top: 20px;">Personalized Recommendations</h5>
+                    <p style="margin-top: 5px;">Receive tailored service suggestions based on your vehicle's needs, history, and current condition.</p>
+          
+                    <div class="row gy-2 gx-4 mb-4">
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Expert Technicians</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Convenient Online Booking</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Customer Support</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Timely Reminders</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Team Start -->
+    
+    <!-- Team End -->
+{% endblock content %}
+        
+
+    

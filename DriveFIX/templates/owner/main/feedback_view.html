@@ -1,0 +1,36 @@
+{% extends 'owner/base.html' %}
+
+{% block content %}
+<h1>{{ service_center.name }} - Dashboard</h1>
+
+<h2>Feedback Received</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Service Quality</th>
+            <th>Staff Professionalism</th>
+            <th>Expectations Met</th>
+            <th>Completion Timeframe</th>
+            <th>Suggestions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for feedback in feedback_list %}
+        <tr>
+            <td>{{ feedback.date }}</td>
+            <td>{{ feedback.service_quality }}</td>  <!-- Adjust this to the actual field name for service quality -->
+            <td>{{ feedback.staff_professionalism }}</td>  <!-- Adjust this for staff professionalism -->
+            <td>{{ feedback.expectations_met }}</td>  <!-- Adjust this for expectations met -->
+            <td>{{ feedback.completion_timeframe }}</td>  <!-- Adjust this for completion timeframe -->
+            <td>{{ feedback.suggestions }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No feedback received yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

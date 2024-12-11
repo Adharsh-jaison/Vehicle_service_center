@@ -1,0 +1,151 @@
+{% extends 'user/base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Service Center Locator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        select, input {
+            padding: 5px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .select-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .select-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search For Service</h1>
+
+    <label for="vehicle-make">Select Vehicle Make:</label>
+    <select id="vehicle-make">
+        <option value="all">All</option> <!-- Add this option for 'All' -->
+        {% for item in items %}
+        <option value="{{ item.vehicle_make|lower }}">{{ item.vehicle_make }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="location">Select Location:</label>
+    <select id="location">
+        <option value="all">All</option>
+        {% for item in items %}
+        <option value="{{ item.location|lower }}">{{ item.location }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Services Search Bar -->
+    <input type="text" id="service-search" placeholder="Search for services...">
+
+    <!-- Services List -->
+    <div id="service-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service Center</th>
+                    <th>Location</th>
+                    <th>Landmark</th>
+                    <th>Vehicle Make</th>
+                    <th>Services Offered</th>
+                    <th>Contact</th>
+                    <th>Book</th>
+                </tr>
+            </thead>
+            <tbody id="service-table-body">
+                {% for item in items %}
+                <tr data-location="{{ item.location|lower }}" data-vehicle="{{ item.vehicle_make|lower }}">
+                    <td>{{ item.service_center_name }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.address }}</td> <!-- Assuming you have a landmark field -->
+                    <td>{{ item.vehicle_make }}</td>
+                    <td>{{ item.available_services }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td><a href="{% url 'user_book' item.id %}" class="btn btn-primary">Book</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Get elements
+        const vehicleMakeSelect = document.getElementById("vehicle-make");
+        const locationSelect = document.getElementById("location");
+        const serviceSearchInput = document.getElementById("service-search");
+        const serviceTableBody = document.getElementById("service-table-body");
+
+        // Add event listeners
+        vehicleMakeSelect.addEventListener("change", filterServices);
+        locationSelect.addEventListener("change", filterServices);
+        serviceSearchInput.addEventListener("input", filterServices);
+
+        // Filter function
+        function filterServices() {
+            const selectedVehicle = vehicleMakeSelect.value.toLowerCase();
+            const selectedLocation = locationSelect.value.toLowerCase();
+            const searchTerm = serviceSearchInput.value.toLowerCase();
+
+            Array.from(serviceTableBody.rows).forEach(row => {
+                const location = row.getAttribute("data-location");
+                const vehicle = row.getAttribute("data-vehicle");
+                const service = row.cells[4].textContent.toLowerCase();
+
+                const matchesLocation = selectedLocation === "all" || location.includes(selectedLocation);
+                const matchesVehicle = selectedVehicle === "all" || vehicle.includes(selectedVehicle);
+                const matchesSearch = service.includes(searchTerm);
+
+                if (matchesLocation && matchesVehicle && matchesSearch) {
+                    row.style.display = ""; // Show row
+                } else {
+                    row.style.display = "none"; // Hide row
+                }
+            });
+        }
+    </script>
+
+</body>
+{% comment %} </html> {% endcomment %}
+{% endblock content %}

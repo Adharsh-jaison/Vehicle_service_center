@@ -1,0 +1,151 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="edit.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body> -->
+    {% extends 'user/base.html' %}
+
+    {% block content %}
+        <div class="container">
+            <div class="main-body mt-5">
+    
+                <div class="row gutters-sm">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    {% if user_profile.user_image %}
+                                        <img src="{{ user_profile.user_image.url }}" alt="Admin"
+                                             class="rounded-circle" width="150">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <p><strong>User Name:</strong> {{ request.user.username }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ user_profile.full_name|default:request.user.username }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <a href="/cdn-cgi/l/email-protection">{{ request.user.email }}</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ user_profil.phone|default:"Not provided" }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ user_profil.address|default:"Not provided" }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-info" target="__blank" href="{% url 'useredit' %}">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Booking Details Section -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="mb-3">Your Bookings</h5>
+    
+                                {% for item in booking %}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-0">Booking ID: {{ item.id }}</h6>
+                                        <p>Service Center name: {{ item.service_center }}</p>
+                                        <p>Service: {{ item.service_date }}</p>
+                                        <p>Date: {{ item.service_date }}</p>
+                                        <p>Status: {{ item.status }}</p>
+                                        <p>Bill: {{ item.bill_amount }}</p>
+                                        {% if item.bill_amount and not item.paid %}
+                                        <form method="post" action="{% url 'pay_bill' item.id %}">
+                                            {% csrf_token %}
+                                       
+                                            <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Pay Bill</button>
+                                            <p></p>
+                                     
+                                            {% comment %} <div class="col-sm-6 text-right">
+                                                <!-- Chat Button -->
+                                                <a href="{% url 'feedback_form' item.id %}" class="btn btn-success">Add FeedBack</a>
+                                            </div> {% endcomment %}
+                                            <p></p>
+                                        </form>
+                                        <div class="col-sm-6 text-right">
+                                            <!-- Chat Button -->
+                                            <a href="{% url 'chat' item.id %}" class="btn btn-success">Chat</a>
+                                            
+                                        </div>
+
+                                    {% else %}
+                                        <p>
+                                            {% if not item.bill_amount %}
+                                            <div class="col-sm-6 text-right">
+                                                <!-- Chat Button -->
+                                                <a href="{% url 'chat' item.id %}" class="btn btn-success">Chat</a>
+                                            </div>
+                                           
+                                                Bill amount is not available.
+                                            {% elif item.paid %}
+                                                The booking has been paid and completed.
+                                               
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                  
+                                </div>
+                                <hr>
+                                {% empty %}
+                                <p>No bookings available.</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript"></script>
+    
+    {% endblock content %}
+    
+<!-- </body>
+</html> -->

@@ -1,0 +1,108 @@
+{% extends 'user/base.html'%}
+
+{% load static%}
+
+{% block content%}
+
+<h1 class="text-center mt-5">DriveFIX - Feedback Form</h1>
+<div class="form-box mx-auto mt-5 col-6">
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Date Field -->
+        <label for="date" class="mt-3">
+            <i class="fa-solid fa-calendar-days"></i>
+            <strong> Date </strong>
+        </label>
+        <input type="date" class="form-control" id="date" name="date" required>
+
+        <!-- How would you rate the quality of the service you received? -->
+        <label class="mt-3">
+            <i class="fa-solid fa-circle"></i>
+            <strong> How would you rate the quality of the service you received? </strong>
+        </label>
+        <div class="radio-group">
+            <input type="radio" id="1" name="service_quality" value="1" required>
+            <label for="1">1</label>
+            <input type="radio" id="2" name="service_quality" value="2">
+            <label for="2">2</label>
+            <input type="radio" id="3" name="service_quality" value="3">
+            <label for="3">3</label>
+            <input type="radio" id="4" name="service_quality" value="4">
+            <label for="4">4</label>
+            <input type="radio" id="5" name="service_quality" value="5">
+            <label for="5">5</label>
+        </div>
+
+        <!-- Were the staff at the service center helpful and professional? -->
+        <label class="mt-3">
+            <i class="fa-solid fa-circle"></i>
+            <strong> Were the staff at the service center helpful and professional? </strong>
+        </label>
+        <div class="radio-group">
+            <input type="radio" id="very_unprofessional_staff" name="staff_professionalism" value="Very Unprofessional" required>
+            <label for="very_unprofessional_staff">Very Unprofessional</label>
+
+            <input type="radio" id="unprofessional_staff" name="staff_professionalism" value="Unprofessional">
+            <label for="unprofessional_staff">Unprofessional</label>
+
+            <input type="radio" id="neutral_staff" name="staff_professionalism" value="Neutral">
+            <label for="neutral_staff">Neutral</label>
+
+            <input type="radio" id="professional_staff" name="staff_professionalism" value="Professional">
+            <label for="professional_staff">Professional</label>
+
+            <input type="radio" id="very_professional_staff" name="staff_professionalism" value="Very Professional">
+            <label for="very_professional_staff">Very Professional</label>
+        </div>
+
+        <!-- Did the service center meet your expectations? -->
+        <label class="mt-3">
+            <i class="fa-solid fa-circle"></i>
+            <strong> Did the service center meet your expectations in addressing your needs or concerns? </strong>
+        </label>
+        <div class="radio-group">
+            <input type="radio" id="did_not_meet_expectations" name="expectations_met" value="Did Not Meet Expectations" required>
+            <label for="did_not_meet_expectations">Did Not Meet Expectations</label>
+
+            <input type="radio" id="below_expectations" name="expectations_met" value="below_expectations">
+            <label for="below_expectations">Below Expectations</label>
+
+            <input type="radio" id="met_expectations" name="expectations_met" value="Met Expectations">
+            <label for="met_expectations">Met Expectations</label>
+
+            <input type="radio" id="exceeded_expectations" name="expectations_met" value="Exceeded Expectations">
+            <label for="exceeded_expectations">Exceeded Expectations</label>
+        </div>
+
+        <!-- Was your service completed within the expected time frame? -->
+        <label class="mt-3">
+            <i class="fa-solid fa-circle"></i>
+            <strong> Was your service completed within the expected time frame? </strong>
+        </label>
+        <div class="radio-group">
+            <input type="radio" id="far_exceeded_timeframe" name="completion_timeframe" value="Far Exceeded Timeframe" required>
+            <label for="far_exceeded_timeframe">Far Exceeded Timeframe</label>
+
+            <input type="radio" id="exceeded_timeframe" name="completion_timeframe" value="Exceeded Timeframe">
+            <label for="exceeded_timeframe">Exceeded Timeframe</label>
+
+            <input type="radio" id="met_timeframe" name="completion_timeframe" value="Met Timeframe">
+            <label for="met_timeframe">Met Timeframe</label>
+
+            <input type="radio" id="under_timeframe" name="completion_timeframe" value="Under Timeframe">
+            <label for="under_timeframe">Under Timeframe</label>
+        </div>
+
+        <!-- Suggestions Text Area -->
+        <label for="suggestions" class="mt-3">
+            <i class="fa-solid fa-comments"></i>
+            <strong> Write your Suggestions: </strong>
+        </label>
+        <textarea id="suggestions" class="form-control" name="suggestions" rows="4" cols="10" required></textarea>
+
+        <button type="submit" class="mt-3">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}

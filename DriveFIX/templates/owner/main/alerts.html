@@ -1,0 +1,30 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+  <!-- Content for the table -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mb-4">Request Table Page</h1>
+        <!-- Your table goes here -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>UserName</th>
+              <th>Subject</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data %}
+            <tr>
+              <td>{{ i.user.username }}</td>
+              <td>{{ i.Subject }}</td>
+              {% if i.Teaching_status == 1 %}
+              <td><a href="{% url 'teaching_change' id=i.id %}"><button>ACCEPT</button></a></td>
+              {% elif i.Teaching_status == 2 %}
+              <td><a href="{% url 'teaching_change' id=i.id %}"><button>ACCEPTED</button></a></td>
+              {% endif %}
+              {% endfor %}
+              
+{% endblock content %} 

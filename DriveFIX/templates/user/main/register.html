@@ -1,0 +1,62 @@
+{% extends 'user/LRbase.html' %}
+
+{% load static%}
+
+{% block content %}
+ <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="">
+      <div class="d-flex align-items-center justify-content-center w-100 mb-5">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-5 mt-5">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <!-- <img src="" width="180" alt=""> -->
+                </a>
+                <!-- <p class="text-center">Your Social Campaigns</p> -->
+                <h2 class="text-center" ><b>DriveFIX</b></h2>
+                <h5>{{msg}}</h5>
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="name" class="form-label">User Name</label>
+                    <input type="text" name="name" class="form-control" id="name" aria-describedby="textHelp" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                  </div>
+                  <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="interest" class="form-label">User Type</label>
+                    <select name="interest" id="interest" class="form-control" required>
+                      <option>Vehicle Owner</option>
+                      <option>Workshop Owner</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp"> -->
+                  </div>
+            
+                    
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</button>
+                 
+                </form>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="{% url 'Login' %}">Sign In</a>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+{% endblock content %}
